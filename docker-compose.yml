@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  minio:
+    image: minio/minio
+    volumes:
+      - ./data:/export
+    ports:
+      - ${MINIO_PORT}:9000
+    environment:
+      MINIO_ACCESS_KEY: ${AWS_ACCESS_KEY_ID}
+      MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY}
+    command: server /export
